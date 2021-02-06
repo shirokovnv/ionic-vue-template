@@ -15,7 +15,8 @@
     "@ionic/vue-router": "^5.4.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0-0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.6",
@@ -33,7 +34,9 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^2.0.0-0",
     "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0-0",
+    "prettier": "^2.2.1",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0"
   },

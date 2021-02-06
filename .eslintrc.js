@@ -1,6 +1,8 @@
 module.exports = {
   root: true,
   env: {
+    es2020: true,
+    browser: true,
     node: true
   },
   'extends': [
@@ -11,6 +13,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
+  plugins: [
+    'prettier'
+  ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
