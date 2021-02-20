@@ -34,7 +34,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const middleware = to.meta.middleware;
+  const middleware: any = to.meta.middleware;
 
   if (!middleware || middleware.length === 0) {
     return next();
