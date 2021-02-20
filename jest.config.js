@@ -4,4 +4,5 @@ module.exports = {
     '^.+\\.vue$': 'vue-jest',
   },
   transformIgnorePatterns: ['/node_modules/(?!@ionic/vue|@ionic/vue-router)'],
+  setupFiles: ['<rootDir>/scripts/registerContext.js']
 };
