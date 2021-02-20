@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 import router from './router';
 
 import { IonicVue } from '@ionic/vue';
@@ -23,10 +23,20 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const app = createApp(App)
-  .use(IonicVue)
-  .use(router);
-  
+// Load all icons
+import installIcons from '@/logic/ui/useIcons';
+installIcons();
+
+// set default auth state
+import { setStateFromLocalStorage } from '@/modules/auth/logic/useAuth';
+setStateFromLocalStorage();
+
+const app = createApp(App).use(IonicVue).use(router);
+
+// install plugins
+import installPlugins from '@/plugins';
+installPlugins(app);
+
 router.isReady().then(() => {
   app.mount('#app');
 });
