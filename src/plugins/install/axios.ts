@@ -6,7 +6,7 @@ axios.defaults.baseURL = api.baseURL;
 axios.defaults.headers = {
   Accept: 'application/json',
   'Content-type': 'application/json',
-  //'X-Requested-With': 'XMLHttpRequest',
+  'X-Requested-With': 'XMLHttpRequest',
 };
 
 export const instance = axios.create();
