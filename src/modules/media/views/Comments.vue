@@ -5,8 +5,8 @@
         <strong>Comments</strong>
         <ion-list>
           <transition-group name="bounce" tag="p">
-            <ion-item v-for="item in items" :key="item.id">
-              <ion-label>{{ item.name }}</ion-label>
+            <ion-item v-for="comment in comments" :key="comment.id">
+              <ion-label>{{ comment.name }}</ion-label>
             </ion-item>
           </transition-group>
         </ion-list>
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent, ref, inject } from 'vue';
 import { IonContent, IonPage, IonList, IonItem, IonLabel } from '@ionic/vue';
-import api from '@/config/api';
+import useComments from '../logic/useComments';
 import '@/theme/container.css';
 
 export default defineComponent({
@@ -31,19 +31,11 @@ export default defineComponent({
     IonLabel,
   },
   setup() {
-    const items = ref([]);
-
-    console.log('comments');
-    const axios: any = inject('axios');
-    axios
-      .get(api.baseURL + 'comments?_start=0&_limit=5')
-      .then((response: any) => {
-        items.value = response.data;
-        console.log(response);
-      });
+    const { comments, fetchComments } = useComments();
+    fetchComments();
 
     return {
-      items,
+      comments
     };
   },
 });
