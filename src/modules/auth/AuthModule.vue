@@ -14,7 +14,6 @@
 import { defineComponent, computed, ref } from 'vue';
 import { IonRouterOutlet, IonPage } from '@ionic/vue';
 import Preloader from '@/components/ui/Preloader.vue';
-import { setInProgress } from '@/logic/ui/useProgressBar';
 
 export default defineComponent({
   name: 'AuthModule',
@@ -22,9 +21,6 @@ export default defineComponent({
     IonRouterOutlet,
     IonPage,
     Preloader,
-  },
-  ionViewDidEnter() {
-    setInProgress(false);
   },
   watch: {
     $route(to, from) {

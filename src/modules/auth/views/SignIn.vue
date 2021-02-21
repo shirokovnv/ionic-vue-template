@@ -1,15 +1,12 @@
 <template>
   <ion-page>
     <ion-content>
-      <h1>SignIn</h1>
-      <ion-vue-simple-form
-        :formFields="form"
-        :rules="rules"
-        :btnText="btnText"
-        @onSubmit="onSubmit"
-      >
-      </ion-vue-simple-form>
-      <router-link to="/auth/signup">To SignUp</router-link>
+      <div id="container">
+        <h1>SignIn</h1>
+        <ion-vue-simple-form :formFields="form" :rules="rules" :btnText="btnText" @onSubmit="onSubmit">
+        </ion-vue-simple-form>
+        <router-link to="/auth/signup">To SignUp</router-link>
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -19,6 +16,7 @@ import { defineComponent, toRefs } from 'vue';
 import { IonContent, IonPage } from '@ionic/vue';
 import IonVueSimpleForm from '@/components/forms/IonVueSimpleForm.vue';
 import useSignIn from '../logic/useSignIn';
+import '@/theme/container.css';
 
 export default defineComponent({
   name: 'SignUp',
