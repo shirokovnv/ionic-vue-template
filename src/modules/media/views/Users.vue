@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { IonContent, IonPage, IonList, IonItem, IonLabel } from '@ionic/vue';
 import useUsers from '../logic/useUsers';
 import '@/theme/container.css';
