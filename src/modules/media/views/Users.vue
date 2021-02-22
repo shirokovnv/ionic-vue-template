@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import { IonContent, IonPage, IonList, IonItem, IonLabel } from '@ionic/vue';
 import useUsers from '../logic/useUsers';
 import '@/theme/container.css';
@@ -31,11 +31,11 @@ export default defineComponent({
     IonLabel,
   },
   setup() {
-    console.log('users');
     const { fetchUsers, users } = useUsers();
-
-    fetchUsers();
-
+    onMounted(async() => {
+      await fetchUsers();
+    });
+    
     return {
       users
     };

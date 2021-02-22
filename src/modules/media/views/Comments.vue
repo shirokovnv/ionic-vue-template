@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import { IonContent, IonPage, IonList, IonItem, IonLabel } from '@ionic/vue';
 import useComments from '../logic/useComments';
 import '@/theme/container.css';
@@ -32,7 +32,9 @@ export default defineComponent({
   },
   setup() {
     const { comments, fetchComments } = useComments();
-    fetchComments();
+    onMounted(async () => {
+      fetchComments();
+    });
 
     return {
       comments
