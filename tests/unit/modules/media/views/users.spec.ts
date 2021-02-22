@@ -48,7 +48,7 @@ describe('Users.vue', () => {
 
     // Let's assert that we've called axios.get the right amount of times and
     // with the right parameters.
-    const backendUsersQuery = {
+    const backendUsersQueryData = {
       query_data: [
         fetchUsersQuery.render()
       ],
@@ -58,7 +58,7 @@ describe('Users.vue', () => {
     expect(axios.post).toHaveBeenCalledTimes(1);
     expect(axios.post).toHaveBeenCalledWith(
       `${api.localURL}/api/queries`, 
-      backendUsersQuery
+      backendUsersQueryData
     );
     
     // Wait until the DOM updates.
