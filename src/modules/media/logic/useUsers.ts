@@ -31,15 +31,15 @@ const addUser = (user: any) => {
   state.users.push(user);
 }
 
+const fetchUsersQuery = QueryBuilder.fetch('App\\Models\\User', 'users')
+  .where(['id', '>=', 1])
+  .paginate(1, 10);
+
 const fetchUsers = async () => {
   const { setOpen, setMessage } = useToast();
 
-  const fetchUsers = QueryBuilder.fetch('App\\Models\\User', 'users')
-    .where(['id', '>=', 1])
-    .paginate(1, 10);
-
   const runner = new QueryRunner(axios, `${api.localURL}/api/queries`);
-  runner.addQuery(fetchUsers);
+  runner.addQuery(fetchUsersQuery);
 
   showProgressOnAsync(
     runner
@@ -47,7 +47,7 @@ const fetchUsers = async () => {
       .then((value: QueryResult) => {
         setUsers(value.getContent('users').data);
       })
-      .catch((error: any) => {
+      .catch((error: any) => { console.log('error!!!', error);
         if (error.response) {
           setMessage(error.response.data.message);
         } else {
@@ -67,6 +67,7 @@ export default function useUsers() {
     addUser,
     setUsers,
     fetchUsers,
+    fetchUsersQuery,
     state: readonly(state)
   }
 }
