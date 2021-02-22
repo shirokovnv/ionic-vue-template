@@ -9,9 +9,7 @@ axios.defaults.headers = {
   'X-Requested-With': 'XMLHttpRequest',
 };
 
-export const instance = axios.create();
-
-instance.interceptors.request.use(
+axios.interceptors.request.use(
   (config: any) => {
     if (token.value) {
       config.headers['Authorization'] = `Bearer ${token.value}`;
@@ -23,6 +21,8 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+
+export const instance = axios;
 
 /*instance.interceptors.response.use(
   (response: any) => {
