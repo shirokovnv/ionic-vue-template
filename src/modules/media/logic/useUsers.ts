@@ -47,7 +47,7 @@ const fetchUsers = async () => {
       .then((value: QueryResult) => {
         setUsers(value.getContent('users').data);
       })
-      .catch((error: any) => { console.log('error!!!', error);
+      .catch((error: any) => {
         if (error.response) {
           setMessage(error.response.data.message);
         } else {

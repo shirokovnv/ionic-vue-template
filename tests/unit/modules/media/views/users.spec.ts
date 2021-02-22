@@ -67,7 +67,6 @@ describe('Users.vue', () => {
     // Finally, we make sure we've rendered the content from the API.
     const userItems = wrapper.findAll('ion-item');
     const userData = mockQueryUsersResult.getContent('users').data;
-    console.log(userData);
 
     expect(userItems).toHaveLength(userData.length);
     userData.forEach((user: any, index: number) => {
