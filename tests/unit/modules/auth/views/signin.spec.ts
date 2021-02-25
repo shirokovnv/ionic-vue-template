@@ -1,7 +1,5 @@
-import {
-  mount
-} from '@vue/test-utils';
 import SignIn from '@/modules/auth/views/SignIn.vue';
+import { mount } from '@vue/test-utils';
 
 describe('SignIn.vue', () => {
   it('has h1 and renders it properly', () => {
@@ -28,5 +26,4 @@ describe('SignIn.vue', () => {
     expect(buttons).toHaveLength(1);
     expect(buttons[0].html()).toMatch('SignIn');
   });
-
 });

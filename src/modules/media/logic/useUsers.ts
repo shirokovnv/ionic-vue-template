@@ -1,35 +1,27 @@
-import {
-  computed,
-  reactive,
-  readonly
-} from 'vue';
-import {
-  showProgressOnAsync
-} from '@/logic/ui/useProgressBar';
-import {
-  instance as axios
-} from '@/plugins/install/axios';
-import useToast from '@/logic/ui/useToast';
-import {
-  QueryRunner,
-  QueryResult,
-  QueryBuilder,
-} from 'laravel-query-api-frontend';
 import api from '@/config/api';
+import { showProgressOnAsync } from '@/logic/ui/useProgressBar';
+import useToast from '@/logic/ui/useToast';
+import { instance as axios } from '@/plugins/install/axios';
+import {
+  QueryBuilder,
+  QueryResult,
+  QueryRunner,
+} from 'laravel-query-api-frontend';
+import { computed, reactive, readonly } from 'vue';
 
 const state = reactive({
-  users: Array<any>()
+  users: Array<any>(),
 });
 
 const users = computed(() => state.users);
 
 const setUsers = (users: Array<any>) => {
   state.users = users;
-}
+};
 
 const addUser = (user: any) => {
   state.users.push(user);
-}
+};
 
 const fetchUsersQuery = QueryBuilder.fetch('App\\Models\\User', 'users')
   .where(['id', '>=', 1])
@@ -53,13 +45,13 @@ const fetchUsers = async () => {
         } else {
           setMessage('Unknown server error');
         }
-        
+
         setOpen(true);
         console.log('Error', error);
       })
       .finally(() => console.log('request finished')),
   );
-}
+};
 
 export default function useUsers() {
   return {
@@ -68,6 +60,6 @@ export default function useUsers() {
     setUsers,
     fetchUsers,
     fetchUsersQuery,
-    state: readonly(state)
-  }
+    state: readonly(state),
+  };
 }

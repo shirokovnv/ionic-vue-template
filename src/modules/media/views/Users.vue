@@ -32,12 +32,12 @@ export default defineComponent({
   },
   setup() {
     const { fetchUsers, users } = useUsers();
-    onMounted(async() => {
+    onMounted(async () => {
       await fetchUsers();
     });
-    
+
     return {
-      users
+      users,
     };
   },
 });

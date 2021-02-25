@@ -3,7 +3,12 @@
     <ion-content>
       <div id="container">
         <h1>SignUp</h1>
-        <ion-vue-simple-form :formFields="form" :rules="rules" :btnText="btnText" @onSubmit="onSubmit">
+        <ion-vue-simple-form
+          :formFields="form"
+          :rules="rules"
+          :btnText="btnText"
+          @onSubmit="onSubmit"
+        >
         </ion-vue-simple-form>
         <router-link to="/auth/signin">To SignIn</router-link>
       </div>

@@ -1,10 +1,8 @@
-import {
-  mount
-} from '@vue/test-utils';
-import Users from '@/modules/media/views/Users.vue';
-import useUsers from '@/modules/media/logic/useUsers';
-import axios from 'axios';
 import api from '@/config/api';
+import useUsers from '@/modules/media/logic/useUsers';
+import Users from '@/modules/media/views/Users.vue';
+import { mount } from '@vue/test-utils';
+import axios from 'axios';
 import flushPromises from 'flush-promises';
 import { BackendResult, QueryResult } from 'laravel-query-api-frontend';
 
@@ -16,32 +14,32 @@ const mockUserData: BackendResult = {
           { id: 1, name: 'User1' },
           { id: 2, name: 'User2' },
           { id: 3, name: 'User3' },
-        ]
-      }        
-    }
+        ],
+      },
+    },
   },
   errors: {},
   warnings: {},
-  trace: {}
+  trace: {},
 };
 
 const mockQueryUsersResult = new QueryResult();
 mockQueryUsersResult.setResult(mockUserData);
 
 jest.mock('axios', () => ({
-  post: jest.fn(() => { 
-    return new Promise((resolve, reject) => { 
+  post: jest.fn(() => {
+    return new Promise((resolve, reject) => {
       resolve({ data: mockUserData });
-    })
+    });
   }),
   defaults: { baseURL: '', headers: {} },
-  interceptors: { request: { use: jest.fn() } }
+  interceptors: { request: { use: jest.fn() } },
 }));
 
 describe('Users.vue', () => {
   it('renders component', async () => {
     const wrapper = mount(Users);
-    
+
     // Ensure we started with default state
     const { users, fetchUsersQuery } = useUsers();
     expect(users.value).toHaveLength(0);
@@ -49,18 +47,16 @@ describe('Users.vue', () => {
     // Let's assert that we've called axios.get the right amount of times and
     // with the right parameters.
     const backendUsersQueryData = {
-      query_data: [
-        fetchUsersQuery.render()
-      ],
-      query_mode: 'transaction'
+      query_data: [fetchUsersQuery.render()],
+      query_mode: 'transaction',
     };
 
     expect(axios.post).toHaveBeenCalledTimes(1);
     expect(axios.post).toHaveBeenCalledWith(
-      `${api.localURL}/api/queries`, 
-      backendUsersQueryData
+      `${api.localURL}/api/queries`,
+      backendUsersQueryData,
     );
-    
+
     // Wait until the DOM updates.
     await flushPromises();
 
@@ -78,7 +74,5 @@ describe('Users.vue', () => {
     users.value.forEach((user: any, index: number) => {
       expect(user).toEqual(userData[index]);
     });
-
   });
-
 });
