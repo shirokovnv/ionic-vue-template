@@ -21,7 +21,7 @@
         {{ vv[index]?.$errors[0]?.$message }}
       </ion-item>
     </div>
-    <ion-button shape="round" expand="block" type="submit">{{
+    <ion-button class="submit-btn" shape="round" expand="block" type="submit">{{
       btnText
     }}</ion-button>
   </form>
