@@ -1,6 +1,5 @@
 export const instance = {
-
-  getItem(key: string): string|null {
+  getItem(key: string): string | null {
     return window.localStorage.getItem(key);
   },
 
@@ -14,5 +13,5 @@ export const instance = {
 
   removeItem(key: string): void {
     window.localStorage.removeItem(key);
-  }
+  },
 };
