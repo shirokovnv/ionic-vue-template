@@ -15,7 +15,7 @@ const mockCommentList = {
 jest.mock('axios', () => ({
   get: jest.fn(() => mockCommentList),
   defaults: { baseURL: '', headers: {} },
-  interceptors: { request: { use: jest.fn() } },
+  interceptors: { request: { use: jest.fn() }, response: { use: jest.fn() } },
 }));
 
 describe('Comments.vue', () => {

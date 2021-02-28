@@ -33,7 +33,7 @@ jest.mock('axios', () => ({
     });
   }),
   defaults: { baseURL: '', headers: {} },
-  interceptors: { request: { use: jest.fn() } },
+  interceptors: { request: { use: jest.fn() }, response: { use: jest.fn() } },
 }));
 
 describe('Users.vue', () => {
