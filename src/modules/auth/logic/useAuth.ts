@@ -51,7 +51,7 @@ const refresh = async () => {
   return response;
 };
 
-const setTokenState = (response: any) => {
+const setAuthState = (response: any) => {
   const accessToken = response.data.token_info.access_token;
   const refreshToken = response.data.token_info.refresh_token;
   const expiresIn = response.data.token_info.expires_in;
@@ -70,7 +70,7 @@ export const doRefresh = async () => {
   setMessage('refreshing...');
   setOpen(true);
   const response = await refresh();
-  setTokenState(response);
+  setAuthState(response);
   return response;
 };
 
@@ -79,7 +79,7 @@ export const doLogin = async (credentials: any) => {
 
   try {
     const response = await login(credentials);
-    setTokenState(response);
+    setAuthState(response);
     router.push('/home');
   } catch (e) {
     if (e.response) {
@@ -183,7 +183,7 @@ export default function useAuth() {
     refresh,
     doRefresh,
     setStateFromLocalStorage,
-    setTokenState,
+    setAuthState,
     cleanStateAndRedirectToAuth,
     state: readonly(state),
   };
