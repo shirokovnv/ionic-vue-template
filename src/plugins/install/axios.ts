@@ -1,6 +1,21 @@
-import axios from 'axios';
 import api from '@/config/api';
-import { token, doLogOut } from '@/modules/auth/logic/useAuth';
+import {
+  cleanStateAndRedirectToAuth,
+  doRefresh,
+  token,
+} from '@/modules/auth/logic/useAuth';
+import axios from 'axios';
+
+let isRefreshing = false;
+const refreshSubscribers: any[] = [];
+
+const subscribeTokenRefresh = (cb: any) => {
+  refreshSubscribers.push(cb);
+};
+
+const onRefreshed = (token: string) => {
+  refreshSubscribers.map((cb) => cb(token));
+};
 
 axios.defaults.baseURL = api.baseURL;
 axios.defaults.headers = {
@@ -22,24 +37,52 @@ axios.interceptors.request.use(
   },
 );
 
-export const instance = axios;
-
-/*instance.interceptors.response.use(
-  (response: any) => {
+axios.interceptors.response.use(
+  (response) => {
     return response;
   },
-  async (error: any) => {
-    if (token.value) {
-      if (error.response.status === 401) {
-        // do logout here
-        await doLogOut();
+  (error) => {
+    const {
+      config,
+      response: { status },
+    } = error;
+    const originalRequest = config;
+
+    if (status === 401) {
+      if (!isRefreshing) {
+        isRefreshing = true;
+        doRefresh()
+          .then((response: any) => {
+            isRefreshing = false;
+            onRefreshed(token.value);
+          })
+          .catch((error: any) => {
+            if (error.response) {
+              if (
+                error.response.status === 401 ||
+                error.response.status === 422 ||
+                error.response.status === 500
+              ) {
+                cleanStateAndRedirectToAuth();
+              }
+            }
+          });
       }
 
-      if (error.response.status === 500) {
-        // log error here
-        console.error('Backend returned error: ', error.response.body);
-        return Promise.reject(error);
-      }
+      const retryOrigReq = new Promise((resolve, reject) => {
+        subscribeTokenRefresh((token: string) => {
+          // replace the expired token and retry
+          originalRequest.headers['Authorization'] = `Bearer ${token}`;
+          axios(originalRequest)
+            .then((response: any) => resolve(response))
+            .catch((error: any) => reject(error));
+        });
+      });
+      return retryOrigReq;
+    } else {
+      return Promise.reject(error);
     }
   },
-);*/
+);
+
+export const instance = axios;

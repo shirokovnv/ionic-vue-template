@@ -8,6 +8,8 @@ import { computed, reactive, readonly } from 'vue';
 const state = reactive({
   loggedIn: false,
   token: '',
+  refreshToken: '',
+  expiresIn: 0,
 });
 
 export const isLoggedIn = computed(() => {
@@ -22,13 +24,53 @@ export const setToken = (token: string) => {
   state.token = token;
 };
 
+export const setRefreshToken = (refreshedToken: string) => {
+  state.refreshToken = refreshedToken;
+};
+
+export const setExpiresIn = (newValue: number) => {
+  state.expiresIn = newValue;
+};
+
+export const refreshToken = computed(() => state.refreshToken);
+export const expiresIn = computed(() => state.expiresIn);
+
 const setLoggedIn = (newValue: boolean) => {
   state.loggedIn = newValue;
 };
 
 const login = async (credentials: any) => {
-  console.log(`${api.authURL()}/login`);
   const response = await axios.post(`${api.authURL()}/login`, credentials);
+  return response;
+};
+
+const refresh = async () => {
+  const response = await axios.post(`${api.authURL()}/refresh`, {
+    token: refreshToken.value,
+  });
+  return response;
+};
+
+const setTokenState = (response: any) => {
+  const accessToken = response.data.token_info.access_token;
+  const refreshToken = response.data.token_info.refresh_token;
+  const expiresIn = response.data.token_info.expires_in;
+  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem('refreshToken', refreshToken);
+  localStorage.setItem('expiresIn', expiresIn);
+  setToken(accessToken);
+  setRefreshToken(refreshToken);
+  setExpiresIn(expiresIn);
+  setLoggedIn(true);
+};
+
+export const doRefresh = async () => {
+  const { setMessage, setOpen } = useToast();
+
+  setMessage('refreshing...');
+  setOpen(true);
+  const response = await refresh();
+  setTokenState(response);
   return response;
 };
 
@@ -37,10 +79,7 @@ export const doLogin = async (credentials: any) => {
 
   try {
     const response = await login(credentials);
-    const accessToken = response.data.token_info.accessToken;
-    localStorage.setItem('accessToken', accessToken);
-    setToken(accessToken);
-    setLoggedIn(true);
+    setTokenState(response);
     router.push('/home');
   } catch (e) {
     if (e.response) {
@@ -62,6 +101,15 @@ export const logOut = async () => {
   return response;
 };
 
+export const cleanStateAndRedirectToAuth = () => {
+  localStorage.clear();
+  setToken('');
+  setRefreshToken('');
+  setExpiresIn(0);
+  setLoggedIn(false);
+  router.push('/auth/signin');
+};
+
 export const doLogOut = async () => {
   const { setMessage, setOpen } = useToast();
 
@@ -79,11 +127,8 @@ export const doLogOut = async () => {
       setMessage('Unknown server error');
     }
   } finally {
-    localStorage.removeItem('accessToken');
-    setToken('');
-    setLoggedIn(false);
     setOpen(true);
-    router.push('/auth/signin');
+    cleanStateAndRedirectToAuth();
   }
 };
 
@@ -98,9 +143,24 @@ export const doRegister = async (userData: any) => {
 
 export const setStateFromLocalStorage = () => {
   const token = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+  const expiresIn = localStorage.getItem('expiresIn');
+
   if (token !== undefined && token !== null && token !== '') {
     setToken(token);
     setLoggedIn(true);
+  }
+
+  if (
+    refreshToken !== undefined &&
+    refreshToken !== null &&
+    refreshToken !== ''
+  ) {
+    setRefreshToken(refreshToken);
+  }
+
+  if (expiresIn !== undefined && expiresIn !== null) {
+    setExpiresIn(+expiresIn);
   }
 };
 
@@ -110,13 +170,21 @@ export default function useAuth() {
     token,
     setToken,
     setLoggedIn,
+    refreshToken,
+    setRefreshToken,
+    expiresIn,
+    setExpiresIn,
     login,
     doLogin,
     logOut,
     doLogOut,
     register,
     doRegister,
+    refresh,
+    doRefresh,
     setStateFromLocalStorage,
+    setTokenState,
+    cleanStateAndRedirectToAuth,
     state: readonly(state),
   };
 }

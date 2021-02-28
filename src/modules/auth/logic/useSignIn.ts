@@ -1,7 +1,6 @@
+import { email, required } from '@vuelidate/validators';
 import { reactive, readonly } from 'vue';
-import { required, email } from '@vuelidate/validators';
 import useAuth from './useAuth';
-import useToast from '@/logic/ui/useToast';
 
 const state = reactive({
   form: {
@@ -34,12 +33,12 @@ const onSubmit = async (payload: any) => {
   console.log('submit sign in', payload);
   const { doLogin } = useAuth();
 
-  await doLogin(payload);  
+  await doLogin(payload);
 };
 
 export default function useSignIn() {
-  return { 
-    onSubmit, 
-    state: readonly(state)
+  return {
+    onSubmit,
+    state: readonly(state),
   };
 }
