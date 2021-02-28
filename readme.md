@@ -1,6 +1,6 @@
 # Ionic Vue Template
 
-The template for hybrid mobile-web development based on 
+Scalable template for hybrid mobile-web development based on 
 
 > [Vue 3](https://v3.vuejs.org/)
 
@@ -18,7 +18,7 @@ The template for hybrid mobile-web development based on
 
 > Automated dependency updates with the help of [Dependabot](https://dependabot.com/).
 
-> Linting with [eslint](https://eslint.org/) and stylying with [https://prettier.io/](prettier).
+> Linting with [eslint](https://eslint.org/) and stylying with [prettier](https://prettier.io/).
 
 > [Jest](https://jestjs.io/) for unit-testing and [cypress](https://www.cypress.io/) for e2e.
 
