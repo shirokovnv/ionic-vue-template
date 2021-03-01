@@ -21,7 +21,7 @@
     "laravel-query-api-frontend": "0.0.4",
     "mitt": "^2.1.0",
     "moment": "^2.29.1",
-    "vue": "^3.0.0-0",
+    "vue": "^3.0.6",
     "vue-class-component": "^8.0.0-rc.1",
     "vue-router": "^4.0.4",
     "vuelidate": "^0.7.6"
@@ -38,7 +38,7 @@
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-unit-jest": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0-0",
+    "@vue/compiler-sfc": "^3.0.6",
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^2.0.0-rc.1",
     "babel-plugin-require-context-hook": "^1.0.0",
