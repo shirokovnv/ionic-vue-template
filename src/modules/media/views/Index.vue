@@ -38,6 +38,10 @@ export default defineComponent({
         name: 'Users',
         href: '/media/users',
       },
+      {
+        name: 'Maps',
+        href: '/media/maps',
+      },
     ]);
 
     const onClick = (item: any) => {
@@ -53,5 +57,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 </style>

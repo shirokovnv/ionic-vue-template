@@ -1,9 +1,10 @@
+import auth from '@/middleware/auth';
 import { RouteRecordRaw } from 'vue-router';
 import MediaModule from './MediaModule.vue';
-import Index from './views/Index.vue';
 import Comments from './views/Comments.vue';
+import Index from './views/Index.vue';
+import Maps from './views/Maps.vue';
 import Users from './views/Users.vue';
-import auth from '@/middleware/auth';
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,10 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: 'users',
         component: Users,
+      },
+      {
+        path: 'maps',
+        component: Maps,
       },
     ],
   },
