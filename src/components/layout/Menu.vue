@@ -19,12 +19,9 @@
             <ion-label>{{ item.name }}</ion-label>
           </ion-item>
 
-          <ion-item
-            button
-            @click="doLogOut"
-          >
-          <ion-icon name="log-out" slot="start"></ion-icon>
-          <ion-label>LogOut</ion-label>
+          <ion-item button @click="doLogOut()">
+            <ion-icon name="log-out" slot="start"></ion-icon>
+            <ion-label>LogOut</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
@@ -45,8 +42,8 @@ import {
   IonContent,
   IonLabel,
 } from '@ionic/vue';
-import { defineComponent, ref } from 'vue';
-import router from '@/router';
+import { defineComponent } from 'vue';
+import useMenu from '@/logic/layout/useMenu';
 import { doLogOut } from '@/modules/auth/logic/useAuth';
 
 export default defineComponent({
@@ -64,22 +61,13 @@ export default defineComponent({
     IonLabel,
   },
   setup() {
-    const autoHide = ref(false);
-
-    const items: any = ref([
-      { name: 'Home', icon: 'home', href: '/home' },
-      { name: 'Media', icon: 'archive', href: '/media' },
-    ]);
-
-    const navigate = (item: any) => {
-      router.push(item.href);
-    };
+    const { items, autoHide, navigate } = useMenu();
 
     return {
       autoHide,
       items,
       navigate,
-      doLogOut
+      doLogOut,
     };
   },
 });
