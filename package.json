@@ -30,7 +30,7 @@
   "devDependencies": {
     "@capacitor/cli": "2.4.7",
     "@types/googlemaps": "^3.43.3",
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-eslint": "~4.5.12",
