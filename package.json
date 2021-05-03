@@ -19,7 +19,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.11.0",
     "ionicons": "^5.5.1",
-    "laravel-query-api-frontend": "0.0.4",
+    "laravel-query-api-frontend": "0.1.0",
     "mitt": "^2.1.0",
     "moment": "^2.29.1",
     "vue": "^3.0.11",
