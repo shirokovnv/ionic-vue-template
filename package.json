@@ -51,7 +51,7 @@
     "flush-promises": "^1.0.2",
     "prettier": "^2.2.1",
     "typescript": "~4.2.4",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-alpha.9"
   },
   "description": "An Ionic project"
 }
