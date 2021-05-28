@@ -16,7 +16,7 @@ const navigate = (item: any) => {
 const autoHide = computed(() => state.autoHide);
 const items = computed(() => state.items);
 
-export default function useModal() {
+export default function useMenu() {
   return {
     autoHide,
     items,
