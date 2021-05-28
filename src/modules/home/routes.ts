@@ -1,4 +1,3 @@
-import auth from '@/middleware/auth';
 import { RouteRecordRaw } from 'vue-router';
 import HomeModule from './HomeModule.vue';
 import Home from './views/Home.vue';
@@ -9,7 +8,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'homeModule',
     component: HomeModule,
     meta: {
-      middleware: [auth]
+      middleware: [],
     },
     children: [
       {

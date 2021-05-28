@@ -1,4 +1,3 @@
-import auth from '@/middleware/auth';
 import { RouteRecordRaw } from 'vue-router';
 import MediaModule from './MediaModule.vue';
 import Comments from './views/Comments.vue';
@@ -12,7 +11,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'mediaModule',
     component: MediaModule,
     meta: {
-      middleware: [auth],
+      middleware: [],
     },
     children: [
       {
