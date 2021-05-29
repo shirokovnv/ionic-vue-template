@@ -13,7 +13,7 @@
     "@capacitor/core": "2.4.7",
     "@googlemaps/js-api-loader": "^1.11.4",
     "@ionic/vue": "^5.6.8",
-    "@ionic/vue-router": "^5.6.6",
+    "@ionic/vue-router": "^5.6.8",
     "@vuelidate/core": "^2.0.0-alpha.18",
     "@vuelidate/validators": "^2.0.0-alpha.15",
     "axios": "^0.21.1",
