@@ -28,7 +28,7 @@
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {
-    "@capacitor/cli": "3.0.0",
+    "@capacitor/cli": "3.0.2",
     "@types/googlemaps": "^3.43.3",
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
