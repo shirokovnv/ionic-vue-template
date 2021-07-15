@@ -20,7 +20,7 @@
     "core-js": "^3.15.2",
     "ionicons": "^5.5.1",
     "laravel-query-api-frontend": "0.1.0",
-    "mitt": "^2.1.0",
+    "mitt": "^3.0.0",
     "moment": "^2.29.1",
     "vue": "^3.0.11",
     "vue-class-component": "^8.0.0-rc.1",
