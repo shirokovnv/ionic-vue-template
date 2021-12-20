@@ -25,7 +25,7 @@
     "vue": "^3.2.26",
     "vue-class-component": "^8.0.0-rc.1",
     "vue-router": "^4.0.12",
-    "vuelidate": "^0.7.6"
+    "vuelidate": "^0.7.7"
   },
   "devDependencies": {
     "@capacitor/cli": "3.1.1",
