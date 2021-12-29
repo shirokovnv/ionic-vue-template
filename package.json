@@ -17,7 +17,7 @@
     "@vuelidate/core": "^2.0.0-alpha.32",
     "@vuelidate/validators": "^2.0.0-alpha.18",
     "axios": "^0.21.1",
-    "core-js": "^3.15.2",
+    "core-js": "^3.20.1",
     "ionicons": "^6.0.0",
     "laravel-query-api-frontend": "0.1.0",
     "mitt": "^3.0.0",
