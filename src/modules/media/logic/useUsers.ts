@@ -1,12 +1,5 @@
 import api from '@/config/api';
-import { showProgressOnAsync } from '@/logic/ui/useProgressBar';
-import useToast from '@/logic/ui/useToast';
 import { instance as axios } from '@/plugins/install/axios';
-import {
-  QueryBuilder,
-  QueryResult,
-  QueryRunner,
-} from 'laravel-query-api-frontend';
 import { computed, reactive, readonly } from 'vue';
 
 const state = reactive({
@@ -23,34 +16,13 @@ const addUser = (user: any) => {
   state.users.push(user);
 };
 
-const fetchUsersQuery = QueryBuilder.fetch('App\\Models\\User', 'users')
-  .where(['id', '>=', 1])
-  .paginate(1, 10);
-
 const fetchUsers = async () => {
-  const { setOpen, setMessage } = useToast();
-
-  const runner = new QueryRunner(axios, `${api.localURL}/api/queries`);
-  runner.addQuery(fetchUsersQuery);
-
-  showProgressOnAsync(
-    runner
-      .runTransaction()
-      .then((value: QueryResult) => {
-        setUsers(value.getContent('users').data);
-      })
-      .catch((error: any) => {
-        if (error.response) {
-          setMessage(error.response.data.message);
-        } else {
-          setMessage('Unknown server error');
-        }
-
-        setOpen(true);
-        console.log('Error', error);
-      })
-      .finally(() => console.log('request finished')),
-  );
+  try {
+    const response = await axios.get(api.baseURL + 'users?_start=0&_limit=10');
+    setUsers(response.data);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export default function useUsers() {
@@ -59,7 +31,6 @@ export default function useUsers() {
     addUser,
     setUsers,
     fetchUsers,
-    fetchUsersQuery,
     state: readonly(state),
   };
 }

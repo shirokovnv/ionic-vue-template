@@ -2,36 +2,18 @@ import api from '@/config/api';
 import useUsers from '@/modules/media/logic/useUsers';
 import Users from '@/modules/media/views/Users.vue';
 import { mount } from '@vue/test-utils';
-import axios from 'axios';
+import { instance as axios } from '@/plugins/install/axios';
 import flushPromises from 'flush-promises';
-import { BackendResult, QueryResult } from 'laravel-query-api-frontend';
 
-const mockUserData: BackendResult = {
-  data: {
-    users: {
-      content: {
-        data: [
-          { id: 1, name: 'User1' },
-          { id: 2, name: 'User2' },
-          { id: 3, name: 'User3' },
-        ],
-      },
-    },
-  },
-  errors: {},
-  warnings: {},
-  trace: {},
+const mockUserList = {
+  data: [
+    { id: 1, name: 'User1', email: 'example1@mail.com' },
+    { id: 2, name: 'User2', email: 'example2@mail.com' },
+  ],
 };
 
-const mockQueryUsersResult = new QueryResult();
-mockQueryUsersResult.setResult(mockUserData);
-
 jest.mock('axios', () => ({
-  post: jest.fn(() => {
-    return new Promise((resolve, reject) => {
-      resolve({ data: mockUserData });
-    });
-  }),
+  get: jest.fn(() => mockUserList),
   defaults: { baseURL: '', headers: {} },
   interceptors: { request: { use: jest.fn() }, response: { use: jest.fn() } },
 }));
@@ -41,20 +23,15 @@ describe('Users.vue', () => {
     const wrapper = mount(Users);
 
     // Ensure we started with default state
-    const { users, fetchUsersQuery } = useUsers();
+    const { users } = useUsers();
     expect(users.value).toHaveLength(0);
 
     // Let's assert that we've called axios.get the right amount of times and
     // with the right parameters.
-    const backendUsersQueryData = {
-      query_data: [fetchUsersQuery.render()],
-      query_mode: 'transaction',
-    };
 
-    expect(axios.post).toHaveBeenCalledTimes(1);
-    expect(axios.post).toHaveBeenCalledWith(
-      `${api.localURL}/api/queries`,
-      backendUsersQueryData,
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith(
+      api.baseURL + 'users?_start=0&_limit=10',
     );
 
     // Wait until the DOM updates.
@@ -62,17 +39,16 @@ describe('Users.vue', () => {
 
     // Finally, we make sure we've rendered the content from the API.
     const userItems = wrapper.findAll('ion-item');
-    const userData = mockQueryUsersResult.getContent('users').data;
 
-    expect(userItems).toHaveLength(userData.length);
-    userData.forEach((user: any, index: number) => {
-      expect(userItems[index].text()).toContain(user.name);
+    expect(userItems).toHaveLength(mockUserList.data.length);
+    userItems.forEach((user: any, index: number) => {
+      expect(user.text()).toContain(mockUserList.data[index].name);
     });
 
     // Test state changes
-    expect(users.value).toHaveLength(userData.length);
-    users.value.forEach((user: any, index: number) => {
-      expect(user).toEqual(userData[index]);
+    expect(users.value).toHaveLength(mockUserList.data.length);
+    users.value.forEach((comment: any, index: number) => {
+      expect(comment).toEqual(mockUserList.data[index]);
     });
   });
 });
