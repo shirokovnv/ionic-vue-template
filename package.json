@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@capacitor/core": "3.4.0",
-    "@googlemaps/js-api-loader": "^1.13.2",
+    "@googlemaps/js-api-loader": "^1.13.5",
     "@ionic/vue": "^5.6.8",
     "@ionic/vue-router": "^6.0.4",
     "@vuelidate/core": "^2.0.0-alpha.34",
