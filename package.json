@@ -10,7 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@capacitor/core": "3.4.0",
+    "@capacitor/core": "3.4.1",
     "@googlemaps/js-api-loader": "^1.13.5",
     "@ionic/vue": "^5.6.8",
     "@ionic/vue-router": "^6.0.7",
