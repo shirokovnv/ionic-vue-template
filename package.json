@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@capacitor/core": "3.4.3",
-    "@googlemaps/js-api-loader": "^1.13.7",
     "@ionic/vue": "^5.6.8",
     "@ionic/vue-router": "^6.0.10",
     "@vuelidate/core": "^2.0.0-alpha.34",
@@ -28,15 +27,14 @@
   },
   "devDependencies": {
     "@capacitor/cli": "3.4.3",
-    "@types/googlemaps": "^3.43.3",
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
-    "@vue/cli-plugin-eslint": "~4.5.15",
     "@vue/cli-plugin-babel": "~5.0.1",
     "@vue/cli-plugin-e2e-cypress": "~4.5.15",
+    "@vue/cli-plugin-eslint": "~4.5.15",
     "@vue/cli-plugin-router": "~5.0.1",
-    "@vue/cli-plugin-typescript": "~5.0.1",
+    "@vue/cli-plugin-typescript": "^4.5.15",
     "@vue/cli-plugin-unit-jest": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
     "@vue/compiler-sfc": "^3.2.31",
@@ -49,8 +47,11 @@
     "eslint-plugin-vue": "^7.20.0",
     "flush-promises": "^1.0.2",
     "prettier": "^2.5.1",
+    "sass": "^1.26.5",
+    "sass-loader": "^12.6.0",
     "typescript": "~4.3.2",
-    "vue-jest": "^5.0.0-alpha.10"
+    "vue-jest": "^5.0.0-alpha.10",
+    "webpack": "^4.46.0"
   },
   "description": "An Ionic project"
 }
