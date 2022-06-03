@@ -14,7 +14,7 @@ Scalable template for hybrid mobile-web development based on
 
 > Vue 3 Composition API.
 
-> Module system (Inspired by [Gitlab Vue](https://docs.gitlab.com/ee/development/fe_guide/vue.html)). 
+> Module system. 
 
 > Automated dependency updates with the help of [Dependabot](https://dependabot.com/).
 
