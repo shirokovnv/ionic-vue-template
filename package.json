@@ -19,7 +19,7 @@
     "core-js": "^3.23.3",
     "ionicons": "^6.0.2",
     "mitt": "^3.0.0",
-    "moment": "^2.29.3",
+    "moment": "^2.29.4",
     "vue": "^3.2.37",
     "vue-class-component": "^8.0.0-rc.1",
     "vue-router": "^4.1.1",
