@@ -45,3 +45,7 @@ npm run test:e2e
 ```
 
 For more commands see [Ionic docs](https://ionicframework.com/docs) and [Capacitor docs](https://capacitorjs.com/docs).
+
+## License
+
+MIT. Please see the [license file](license.md) for more information.
