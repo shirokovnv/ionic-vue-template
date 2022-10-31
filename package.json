@@ -22,7 +22,7 @@
     "moment": "^2.29.4",
     "vue": "^3.2.41",
     "vue-class-component": "^8.0.0-rc.1",
-    "vue-router": "^4.1.5",
+    "vue-router": "^4.1.6",
     "vuelidate": "^0.7.7"
   },
   "devDependencies": {
