@@ -20,7 +20,7 @@
     "ionicons": "^6.0.4",
     "mitt": "^3.0.0",
     "moment": "^2.29.4",
-    "vue": "^3.2.41",
+    "vue": "^3.2.45",
     "vue-class-component": "^8.0.0-rc.1",
     "vue-router": "^4.1.6",
     "vuelidate": "^0.7.7"
