@@ -35,7 +35,7 @@
     "@vue/cli-plugin-eslint": "~4.5.19",
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-plugin-typescript": "^5.0.8",
-    "@vue/cli-plugin-unit-jest": "~4.5.15",
+    "@vue/cli-plugin-unit-jest": "~5.0.8",
     "@vue/cli-service": "~4.5.15",
     "@vue/compiler-sfc": "^3.2.45",
     "@vue/compiler-dom": "^3.2.45",
