@@ -38,7 +38,7 @@
     "@vue/cli-plugin-unit-jest": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
     "@vue/compiler-sfc": "^3.2.45",
-    "@vue/compiler-dom": "^3.2.45",
+    "@vue/compiler-dom": "^3.3.4",
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^2.0.0-rc.3",
     "babel-plugin-require-context-hook": "^1.0.0",
