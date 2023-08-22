@@ -16,7 +16,7 @@
     "@vuelidate/core": "^2.0.2",
     "@vuelidate/validators": "^2.0.3",
     "axios": "^0.21.2",
-    "core-js": "^3.31.0",
+    "core-js": "^3.32.1",
     "ionicons": "^7.1.2",
     "mitt": "^3.0.0",
     "moment": "^2.29.4",
