@@ -18,7 +18,7 @@
     "axios": "^0.21.2",
     "core-js": "^3.32.1",
     "ionicons": "^7.1.2",
-    "mitt": "^3.0.0",
+    "mitt": "^3.0.1",
     "moment": "^2.29.4",
     "vue": "^3.3.4",
     "vue-class-component": "^8.0.0-rc.1",
