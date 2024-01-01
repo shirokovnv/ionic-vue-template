@@ -15,7 +15,7 @@
     "@ionic/vue-router": "^7.3.3",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
-    "axios": "^0.21.2",
+    "axios": "^1.6.3",
     "core-js": "^3.32.2",
     "ionicons": "^7.1.2",
     "mitt": "^3.0.1",
