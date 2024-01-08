@@ -12,7 +12,7 @@
   "dependencies": {
     "@capacitor/core": "5.5.0",
     "@ionic/vue": "^5.6.8",
-    "@ionic/vue-router": "^7.3.3",
+    "@ionic/vue-router": "^7.6.3",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "axios": "^0.21.2",
